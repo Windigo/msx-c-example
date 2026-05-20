@@ -18,5 +18,8 @@ __pycache__/
 # Embedded git repo (Fusion-C standalone)
 fusion-c/
 
+# Build directory
+build/
+
 # macOS
 .DS_Store

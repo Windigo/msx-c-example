@@ -53,8 +53,8 @@ _main::
 ;src/main.c:13: Screen(0);
 	xor	a, a
 	call	_Screen
-;src/main.c:14: Width(40);
-	ld	a, #0x28
+;src/main.c:14: Width(80);
+	ld	a, #0x50
 	call	_Width
 ;src/main.c:17: Print("****************************************");
 	ld	hl, #___str_0
@@ -88,8 +88,8 @@ _main::
 ;src/main.c:31: Screen(0);
 	xor	a, a
 	call	_Screen
-;src/main.c:32: Width(40);
-	ld	a, #0x28
+;src/main.c:32: Width(80);
+	ld	a, #0x50
 	call	_Width
 ;src/main.c:35: SetColors(10, 15, 4);  // Lichtgroen op wit met rode border
 	ld	a, #0x04

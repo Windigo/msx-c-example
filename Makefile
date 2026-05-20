@@ -23,11 +23,12 @@
 #
 
 # --- Configuratie ---
-TARGET      = main.com
+TARGET      = $(BUILD_DIR)main.com
 SRC         = src/main.c
 FUSION_DIR  = fusion-c-lib
 HEX2BIN     = ./hex2bin
 DEST_DIR    = dsk/
+BUILD_DIR   = build/
 
 # Fusion-C paths
 INCLUDEDIR  = $(FUSION_DIR)/include/
@@ -51,7 +52,8 @@ CCFLAGS     = --code-loc $(ADDR_CODE) \
               -I $(HEADERDIR) \
               $(FUSION_LIB) \
               -L $(LIBDIR) \
-              $(CRT0)
+              $(CRT0) \
+              --outdir $(BUILD_DIR)
 
 # --- Standaard targets ---
 .PHONY: all clean fclean run patch-lib
@@ -69,23 +71,27 @@ patch-lib:
 	@echo "✓ Library gepatcht!"
 
 # Compileer C naar IHX (Intel Hex)
-%.ihx: $(SRC) $(FUSION_DIR)/lib/$(FUSION_LIB)
+$(BUILD_DIR)%.ihx: $(SRC) $(FUSION_DIR)/lib/$(FUSION_LIB) | $(BUILD_DIR)
 	@echo "..•̀ᴗ•́)و Compileren met SDCC ..."
 	sdcc $(CCFLAGS) $<
 	@echo "✓ Compilatie gelukt!"
 
 # Converteer IHX naar COM (MSX-DOS executable)
-%.com: %.ihx
+$(BUILD_DIR)%.com: $(BUILD_DIR)%.ihx
 	@echo "..•̀ᴗ•́)و Converteren naar COM ..."
-	$(HEX2BIN) -e com $<
+	$(HEX2BIN) -e com $(BUILD_DIR)$*
 	mkdir -p $(DEST_DIR)
-	cp $@ $(DEST_DIR)
+	cp $(BUILD_DIR)$*.com $(DEST_DIR)
 	@echo "✓ Executable gekopieerd naar $(DEST_DIR)"
+
+# Zorg dat de build directory bestaat
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
 
 # Opruimen van tijdelijke bestanden
 clean:
-	rm -f *.com *.asm *.lst *.sym *.bin *.ihx *.lk *.map *.noi *.rel
-	@echo "....(╯°□°） Tijdelijke bestanden verwijderd!"
+	rm -rf $(BUILD_DIR)
+	@echo "....(╯°□°） Build bestanden verwijderd!"
 
 # Alles opnieuw bouwen
 fclean: clean all
