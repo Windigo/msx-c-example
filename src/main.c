@@ -11,7 +11,7 @@ void main(void)
 {
     // Wis het scherm en zet tekstmodus
     Screen(0);
-    Width(40);
+    Width(80);
 
     // Toon een welkomstbericht
     Print("****************************************");
