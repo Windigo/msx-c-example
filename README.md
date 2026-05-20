@@ -30,6 +30,8 @@ c-example/
 
 ## Compileren
 
+### MSX-DOS executable (.com) — standaard
+
 ```bash
 make            # Compileer en genereer main.com
 make clean      # Verwijder tijdelijke bestanden
@@ -38,17 +40,23 @@ make patch-lib  # Patch Fusion-C library opnieuw (indien nodig)
 make run        # Start openMSX emulator met de gegenereerde disk
 ```
 
+### MSX cartridge ROM (.rom)
+
+```bash
+make rom        # Compileer en genereer main.rom (32KB cartridge)
+make run-rom    # Start openMSX emulator met de cartridge
+```
+
 **Eerste keer:** Bij de eerste `make` wordt de Fusion-C library automatisch gepatcht voor compatibiliteit met SDCC 4.5.0. Dit is een eenmalige stap.
 
-Het gecompileerde `.com` bestand wordt gekopieerd naar de `compiled/` directory.
+De gecompileerde bestanden worden gekopieerd naar de `compiled/` directory.
 
 ## Testen op een echte MSX of emulator
 
 Kopieer `compiled/main.com` naar een MSX-DOS diskimage en voer het uit op:
 
-- **openMSX** (aanbevolen): `brew install openmsx` → daarna `make run`
+- **openMSX** (aanbevolen): `brew install openmsx` → daarna `make run` of `make run-rom`
 - **blueMSX**
-- Een echte MSX computer met MSX-DOS
 
 ## Voorbeeld
 
