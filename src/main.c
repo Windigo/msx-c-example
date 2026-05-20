@@ -29,7 +29,7 @@ void main(void)
 
     // Wis het scherm
     Screen(0);
-    Width(40);
+    Width(80);
 
     // Stel kleuren in: foreground, background, border
     SetColors(10, 15, 4);  // Lichtgroen op wit met rode border
