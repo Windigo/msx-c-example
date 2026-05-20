@@ -14,12 +14,12 @@ Dit project bevat een complete ontwikkelomgeving voor het programmeren van MSX c
 c-example/
 ├── Makefile              # Build-script
 ├── README.md             # Dit bestand
-├── hex2bin               # Converter tool (IHX -> COM)
-├── mot2bin               # Motorola S-record converter
 ├── patch_fusion_lib.py   # Script om Fusion-C library te patchen
 ├── src/
 │   └── main.c            # Je C-broncode
-├── dsk/                  # Output directory voor .com bestanden
+├── build/                # Build directory (tijdelijke bestanden)
+├── compiled/             # Output directory voor .com bestanden
+├── fusion-c/             # Standalone Fusion-C distributie
 └── fusion-c-lib/         # Fusion-C library
     ├── header/           # Header bestanden (.h)
     ├── include/          # CRT0 bestanden (.rel)
@@ -40,11 +40,11 @@ make run        # Start openMSX emulator met de gegenereerde disk
 
 **Eerste keer:** Bij de eerste `make` wordt de Fusion-C library automatisch gepatcht voor compatibiliteit met SDCC 4.5.0. Dit is een eenmalige stap.
 
-Het gecompileerde `.com` bestand wordt gekopieerd naar de `dsk/` directory.
+Het gecompileerde `.com` bestand wordt gekopieerd naar de `compiled/` directory.
 
 ## Testen op een echte MSX of emulator
 
-Kopieer `dsk/main.com` naar een MSX-DOS diskimage en voer het uit op:
+Kopieer `compiled/main.com` naar een MSX-DOS diskimage en voer het uit op:
 
 - **openMSX** (aanbevolen): `brew install openmsx` → daarna `make run`
 - **blueMSX**
