@@ -15,5 +15,8 @@ mot2bin
 __pycache__/
 *.pyc
 
+# Embedded git repo (Fusion-C standalone)
+fusion-c/
+
 # macOS
 .DS_Store
