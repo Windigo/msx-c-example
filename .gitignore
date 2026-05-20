@@ -1,0 +1,19 @@
+# Object files, binaries, and generated files
+*.com
+*.rel
+*.ihx
+*.lk
+*.lst
+*.map
+*.noi
+*.sym
+*.bin
+hex2bin
+mot2bin
+
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
